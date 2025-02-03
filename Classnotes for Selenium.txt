@@ -1,0 +1,296 @@
+Selenium 
+----------
+
+
+Classification Automation Tools 
+-------------------------------
+1. Functional Automation - 
+
+2. Non Functional Automation  
+
+----------------------------
+
+Functional  - QTP(VBscript, JavaScript), UFT, RFT, SilkTest, WinRunner(TSL),VBscript, Rational Robot(SQABasic), Selenium, TestComplete, Renorex(
+
+   Types of Applications -
+
+   Selenium - WebApplicationJava
+Python
+CSharp
+Ruby
+JavaScript
+Kotlin
+
+Performance - LoadRunner, OpenSTA, RPT, Jmeter, Neoload, Silkperformer, OctoPerf, Appedo/ APM 
+
+Test Management - QualityCenter, ALMQC, QM, JIRA, RTM, STM, ClearQuest, TOSCO, 
+
+What is use of Learn Selenium
+------------------------------
+
+1. Language Dependency broken - Python
+CSharp
+Ruby
+JavaScript
+Kotlin
+
+2. Open_Source 
+
+3. Android, IOS, Windows, Linux, MAC, Solaris
+
+4. Google Chrome, Mozila Firefox, IE, Edge, Safari, Opera
+
+5. Parallel Execution 
+
+6. Integration of ANT and Maven
+
+7. Generate Reports With help of TestNG
+
+
+Selenium Limitation 
+----------------------
+
+It does not have built in Object Repository like UFT,Renorex to maintain object/elements in centralized location. We can overcome with this limitation using POM Framework.
+
+Selenium Components
+-------------------
+
+Selenium IDE
+Selenium RC (No longer now)
+Selenium WebDriver  - Most Popular
+Selenium Gird - 
+
+Selenium WebDriver 
+--------------------
+
+What is mean by Selenium WebDriver  ?
+------------------------------------
+
+WebDriver is Interface - It contains method declarations (get(),quit(),close())
+
+Selenium automates browser, That's it!
+
+What you do with that power is entirely up to you. 
+
+Any Automation Tool Must have following feature
+
+1. Reporting 
+2. Script Maintenance  (Reusability, Code standards, calling features)
+3. Object Repository - 
+4. Test Suite Maintenance 
+5. Data Driven Feature
+6. Integration with CI/CD
+7. Integration with Test Management Tools
+
+Selenium does not have any feature (By default).
+
+Selenium WebDriver drives the Browser natively.
+As user would, either locally or on a remote machine using the Selenium Server,
+It marks a leap forward in terms of browser automation.
+
+
+WebDriver is designed as a simple and more concise programming interface
+WebDriver is a Compact Object Oriented API.
+It drives the browser Effectively.
+
+
+interface Bank
+{
+   float rateOfInterest();
+}
+
+Class Citibank implements Bank
+{
+   public float rateOfInterest()
+   {
+      return 10.5f;
+   }
+}
+
+Class ICICI implements Bank
+{
+
+   public float rateOfInterest()
+   {
+    return 12.5f;
+    }
+
+Class TestInterface 
+{
+  public static void main(String[] args)
+   {
+     Citibank obj = new Citibank();
+      System.out.println("ROI:.."+obj.rateOfInterest();
+
+     Bank obj = new Citibank();
+
+}
+}
+    
+
+WebDriver Implementation in Java
+---------------------------------
+
+package webdriverImplementation;
+
+public class ChromeDriver implements WebDriver {
+
+	@Override
+	public void close() {
+		System.out.println("Chrome Browser Current window Closed..");
+		
+	}
+
+	@Override
+	public void quit() {
+		System.out.println("Chrome Browser Session Closed..");
+		
+	}
+
+	@Override
+	public void get() {
+		System.out.println("Chrome Browser Opened the application..");
+		
+	}
+
+	@Override
+	public String getTitle() {
+		String BrowserTitle = "HelloPetStore";
+		System.out.println("Chrome Browser Returned the Title..");
+		 return BrowserTitle;
+	}
+
+}
+
+
+package webdriverImplementation;
+
+public class EdgeDriver implements WebDriver {
+
+	@Override
+	public void close() {
+		System.out.println("Edge Browser Current window Closed..");
+		
+	}
+
+	@Override
+	public void quit() {
+		System.out.println("Edge Browser Session Closed..");
+		
+	}
+
+	@Override
+	public void get() {
+		System.out.println("Edge Browser Opened the application..");
+		
+	}
+
+	@Override
+	public String getTitle() {
+		String BrowserTitle = "HelloPetStore";
+		System.out.println(" Edge Browser Returned the Title..");
+		 return BrowserTitle;
+	}
+
+}
+
+
+package webdriverImplementation;
+
+public class TestWebDirverImplementation {
+
+	public static void main(String[] args) {
+		
+		WebDriver driver = new ChromeDriver();
+		driver.get();
+		System.out.println(driver.getTitle());
+		driver.close();
+		driver.quit();
+		
+		WebDriver driver1 = new EdgeDriver();
+		driver1.get();
+		System.out.println(driver1.getTitle());
+		driver1.close();
+		driver1.quit();
+		 
+
+	}
+
+}
+
+
+package seleniumexample;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+
+public class FirstSeleniumScript {
+
+	public static void main(String[] args) throws InterruptedException
+	{
+		 WebDriver driver = new ChromeDriver();
+		 driver.get("https://petstore.octoperf.com/");
+		 //Thread.sleep(5);
+		 
+		 WebDriver driver1 = new EdgeDriver();
+		 driver1.get("https://petstore.swagger.io/");
+		 driver.quit();
+		 driver1.quit();
+
+	}
+
+}
+
+WebDriver Commands
+----------------------
+
+Browser Commands - get(), getTitle(), getCurrentUrl(), getPageSource(), close(), Quit()
+
+Navigation Commands - navigate(), to(), back(), forward(), refresh()
+
+WebElement Commands - clear(), click(), findElement(), findElements(), getCssValue(), getLocation(), getSize(), getText(), isDisplayed, isEnabled, isSelected(), sendKeys(charSequence arg0)
+
+
+Anukriti.ojha@walmart.com
+sanjay.gowda@walmart.com
+santhoshnagaraj.vijayakumar@walmart.com
+saurav.kumar1@walmart.com
+Sunilkumar.s@walmart.com
+Shilpi.goel@walmart.com
+Maruthi.kumar@walmart.com
+saikiranreddy.singir@walmart.com
+monica.priyadharshini@walmart.com
+Lokesh.patni@walmart.com
+Vommi.theja@walmart.com
+Vishal.jain0@walmart.com
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
