@@ -433,6 +433,258 @@ public class VerifyLandingPage
 }
 
 
+-------------------------------------------------------------------------------------
+
+	package testcases;
+
+import java.io.IOException;
+
+import org.openqa.selenium.WebDriver;
+
+import com.automation.petstore.objectReader.ObjectReader;
+
+import browserimplementation.BrowserConfig;
+import pages.LandingPage;
+
+public class VerifyLandingPage 
+{
+	
+
+	public static void main(String[] args) throws IOException, InterruptedException
+	{
+		
+		//Browser Implementation 
+		// WebDriver driver = new ChromeDriver();
+		BrowserConfig bcon;
+		ObjectReader or;
+		LandingPage lp;
+	
+		WebDriver driver=null;
+		bcon = new BrowserConfig();
+		//Chrome Instance to local driver object
+		driver = bcon.Launch_Chrome();
+		lp = new LandingPage(driver);
+		or = new ObjectReader();
+		String URL = or.get_BaseURl();
+		System.out.println("The Base URL is..."+URL);
+		//Calling the Object Repository Method 
+		 driver.get(URL);
+		 
+		 //Assertion 
+		 String acURL = lp.verify_URL();
+		 String exURL = "https://petstore.octoperf.com/";
+		 if(exURL.equals(acURL))
+			 System.out.println("URL Matching Testcase Passed");
+		 else
+			 System.out.println("URL Not Matching Testcase Failed");
+		 
+		 
+		//Assertion 
+		 String acTitle = lp.verify_Title();
+		 System.out.println(acTitle);
+		 String exTitle = "JPetStore Demo";
+		 if(exTitle.equals(acTitle))
+			 System.out.println("Title Matching Testcase Passed");
+		 else
+			 System.out.println("Title Not Matching Testcase Failed");
+		
+		// driver.findElement(By.linkText("Enter the Store")).click();
+		 
+		 
+		 
+		 lp.click_EnterStoreLink();
+		 Thread.sleep(5);
+		 
+		 //Browser session Closed
+		 driver.quit();
+		 
+
+	}
+
+}
+
+
+//*[@id="Content"]/h2
+-----------------------------------------------------------------------------
+# This is Global Object Repository 
+BaseURL=https://petstore.octoperf.com/
+landingpage.enterstore.link=Enter the Store
+landingpage.welcomemsg.xpath=//*[@id="Content"]/h2
+--------------------------------------------------
+
+package com.automation.petstore.objectReader;
+
+
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Properties;
+
+public class ObjectReader {
+	
+	Properties objpro;
+	
+	public ObjectReader() throws IOException
+	{
+		String path ="D:\\Clients\\KH\\Walmart\\Automation\\com.automation.petstore\\ObjectRepository\\object.properties";
+		FileReader reader = new FileReader(path);
+		objpro = new Properties();
+		objpro.load(reader);
+	}		 
+	
+	public String get_BaseURl()
+	{
+		return objpro.getProperty("BaseURL");
+	}
+	
+	public String get_EnterStore()
+	{
+		return objpro.getProperty("landingpage.enterstore.link");
+	}
+	public String get_WelcomeMsg()
+	{
+		return objpro.getProperty(get_WelcomeMsg());
+	}
+
+}
+---------------------------------------------------------------------
+
+package pages;
+
+import java.io.IOException;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
+import com.automation.petstore.objectReader.ObjectReader;
+
+public class LandingPage 
+{
+	WebDriver driver;
+	ObjectReader or;
+	//By enter_store = By.linkText(or.get_EnterStore());
+	public LandingPage(WebDriver driver) throws IOException
+	{
+		this.driver = driver;
+		or = new ObjectReader();
+	}
+	
+	public String verify_URL()
+	{		
+		System.out.println(driver.getCurrentUrl());
+		return driver.getCurrentUrl();
+	}
+	
+	public String verify_Title()
+	{
+		System.out.println(driver.getTitle());
+		return driver.getTitle();
+	}
+	
+	public String verify_WelComeText()
+	{
+		WebElement element = driver.findElement(By.xpath(or.get_WelcomeMsg()));
+		System.out.println(element.getText());
+		return element.getText();
+	}
+		
+	public void click_EnterStoreLink()
+	{
+		 //driver.findElement(By.linkText("Enter the Store")).click();
+		driver.findElement(By.linkText(or.get_EnterStore()));
+	}
+	
+	public void verify_CopyRightMsg()
+	{
+		
+	}
+	
+	
+
+}
+---------------------------------------------------------------------------
+package testcases;
+
+import java.io.IOException;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.testng.Assert;
+import org.testng.Reporter;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
+import com.automation.petstore.objectReader.ObjectReader;
+
+import browserimplementation.BrowserConfig;
+import pages.LandingPage;
+
+public class VerifyLandingPage 
+{
+	
+	BrowserConfig bcon;
+	ObjectReader or;
+	LandingPage lp;
+	WebDriver driver=null;
+	
+	@BeforeMethod
+	public void setUp() throws IOException 
+	{
+		bcon = new BrowserConfig();
+		driver = bcon.Launch_Chrome();
+		lp = new LandingPage(driver);
+		or = new ObjectReader();
+	}
+	
+	@Test
+	public void test_LandingPage() throws IOException, InterruptedException
+	{
+		
+		
+		String URL = or.get_BaseURl();
+		System.out.println("The Base URL is..."+URL);
+		//Calling the Object Repository Method 
+		driver.get(URL);
+		 
+		 //Assertion 
+		 String acURL = lp.verify_URL();
+		 String exURL = "https://petstore.octoperf.com/";
+		 Assert.assertEquals(acURL, exURL);
+		 Reporter.log("TestCase Passed..");
+		 
+		 String  ActwelcomeMessage = lp.verify_WelComeText();
+		 String exWelComeMsg = "Welcome to JPetStore 6";
+		 Assert.assertEquals(ActwelcomeMessage,exWelComeMsg);
+		 Reporter.log("TestCase Passed..");
+		 
+		//Assertion 
+		 String acTitle = lp.verify_Title();
+		 System.out.println(acTitle);
+		 String exTitle = "JPetStore Demo";
+		 Assert.assertEquals(acTitle, exTitle);
+		 Reporter.log("TestCase Passed.."); 
+		 
+		 
+		 
+		 lp.click_EnterStoreLink();
+		 Thread.sleep(5);
+		 
+		 
+		 
+
+	}
+	
+	@AfterMethod
+	public void tearDown()
+	{
+		//Browser session Closed
+		 driver.quit();
+	}
+
+}
+
+
 
 
 
