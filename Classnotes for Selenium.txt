@@ -265,6 +265,174 @@ Lokesh.patni@walmart.com
 Vommi.theja@walmart.com
 Vishal.jain0@walmart.com
 
+Mohammed.bashit@walmart.com
+
+
+Test Automation Business scenario 
+---------------------------------
+Verify the Landing Page
+--------------------------
+Testcase 1
+
+1. Navigate to https://petstore.octoperf.com/
+2. Verify the URL "https://petstore.octoperf.com/" 
+3. Verify the Page Title equals to "JPetStore Demo"
+4. Verify the page contains "Welcome to JPetStore 6"
+5. Verify that Enter the store link is present
+6. Verify the Enter store link is navigating to home page
+7. verify that Copyright www.mybatis.org
+
+
+	package testcases;
+
+import org.openqa.selenium.WebDriver;
+
+import browserimplementation.BrowserConfig;
+
+public class VerifyLandingPage 
+{
+	
+
+	public static void main(String[] args)
+	{
+		
+		//Browser Implementation 
+		// WebDriver driver = new ChromeDriver();
+		BrowserConfig bcon;
+		WebDriver driver=null;
+		bcon = new BrowserConfig();
+		//Chrome Instance to local driver object
+		driver = bcon.Launch_Chrome();	 
+		 
+		 driver.get("https://petstore.octoperf.com/");
+		 
+		 //Assertion 
+		 String acURL = driver.getCurrentUrl();
+		 String exURL = "https://petstore.octoperf.com/";
+		 if(exURL.equals(acURL))
+			 System.out.println("URL Matching Testcase Passed");
+		 else
+			 System.out.println("URL Not Matching Testcase Failed");
+		 
+		 //Browser session Closed
+		 driver.quit();
+		 
+
+	}
+
+}
+
+
+package browserimplementation;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class BrowserConfig {
+	
+	WebDriver driver;
+	
+	public WebDriver Launch_Chrome()
+	{
+		driver = new ChromeDriver();
+		return driver;
+	}
+
+}
+
+Object Repository
+
+# This is Global Object Repository 
+BaseURL=https://petstore.octoperf.com/
+
+
+ObjectReader
+
+package com.automation.petstore.objectReader;
+
+
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Properties;
+
+public class ObjectReader {
+	
+	Properties objpro;
+	
+	public ObjectReader() throws IOException
+	{
+		String path ="D:\\Clients\\KH\\Walmart\\Automation\\com.automation.petstore\\ObjectRepository\\object.properties";
+		FileReader reader = new FileReader(path);
+		objpro = new Properties();
+		objpro.load(reader);
+	}	
+	 
+	
+	public String get_BaseURl()
+	{
+		return objpro.getProperty("BaseURL");
+	}
+
+}
+
+
+	package testcases;
+
+import java.io.IOException;
+
+import org.openqa.selenium.WebDriver;
+
+import com.automation.petstore.objectReader.ObjectReader;
+
+import browserimplementation.BrowserConfig;
+
+public class VerifyLandingPage 
+{
+	
+
+	public static void main(String[] args) throws IOException
+	{
+		
+		//Browser Implementation 
+		// WebDriver driver = new ChromeDriver();
+		BrowserConfig bcon;
+		ObjectReader or;
+		WebDriver driver=null;
+		bcon = new BrowserConfig();
+		//Chrome Instance to local driver object
+		driver = bcon.Launch_Chrome();
+		or = new ObjectReader();
+		String URL = or.get_BaseURl();
+		System.out.println("The Base URL is..."+URL);
+		//Calling the Object Repository Method 
+		 driver.get(URL);
+		 
+		 //Assertion 
+		 String acURL = driver.getCurrentUrl();
+		 String exURL = "https://petstore.octoperf.com/";
+		 if(exURL.equals(acURL))
+			 System.out.println("URL Matching Testcase Passed");
+		 else
+			 System.out.println("URL Not Matching Testcase Failed");
+		 
+		 
+		//Assertion 
+		 String acTitle = driver.getTitle();
+		 System.out.println(acTitle);
+		 String exTitle = "JPetStore Demo";
+		 if(exTitle.equals(acTitle))
+			 System.out.println("Title Matching Testcase Passed");
+		 else
+			 System.out.println("Title Not Matching Testcase Failed");
+		 //Browser session Closed
+		 driver.quit();
+		 
+
+	}
+
+}
+
+
 
 
 
