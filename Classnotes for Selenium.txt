@@ -268,6 +268,8 @@ Vishal.jain0@walmart.com
 Mohammed.bashit@walmart.com
 
 
+https://upgrad1.typeform.com/to/W6XadH5w
+
 Test Automation Business scenario 
 ---------------------------------
 Verify the Landing Page
@@ -1222,12 +1224,102 @@ public class ReporterTest
 
 }
 
+http://demoaut.katalon.com/
+
+
+ /*
+      *  Automate the process of navigating a pet store website and adding items to the cart.
+      *
+      *  1. Open a web browser and navigate to the specified pet store URL.
+      *  2. Click on the "Enter the Store" link to access the main page.
+      *  3. Click on the "Sign In" link to log into the store.
+      *  4. Click on various product links to view details and add them to the cart.
+      *  5. Proceed to checkout after adding each product to the cart.
+      *  6. Close the web browser after completing the actions.
+      *
+      */
+
+
+WebUI.openBrowser('')
+
+WebUI.navigateToUrl('https://petstore.octoperf.com/')
+
+WebUI.click(findTestObject('Object Repository/ProductNavigation/Page_JPetStore Demo/a_Enter the Store'))
+
+WebUI.click(findTestObject('Object Repository/ProductNavigation/Page_JPetStore Demo/a_Sign In'))
+
+WebUI.click(findTestObject('Object Repository/ProductNavigation/Page_JPetStore Demo/img'))
+
+WebUI.click(findTestObject('Object Repository/ProductNavigation/Page_JPetStore Demo/a_FI-SW-01'))
+
+WebUI.click(findTestObject('Object Repository/ProductNavigation/Page_JPetStore Demo/a_EST-1'))
+
+WebUI.click(findTestObject('Object Repository/ProductNavigation/Page_JPetStore Demo/a_Add to Cart'))
+
+WebUI.click(findTestObject('Object Repository/ProductNavigation/Page_JPetStore Demo/a_Proceed to Checkout'))
+
+WebUI.click(findTestObject('Object Repository/ProductNavigation/Page_JPetStore Demo/img_1'))
+
+WebUI.click(findTestObject('Object Repository/ProductNavigation/Page_JPetStore Demo/a_FL-DSH-01'))
+
+WebUI.click(findTestObject('Object Repository/ProductNavigation/Page_JPetStore Demo/a_EST-14'))
+
+WebUI.click(findTestObject('Object Repository/ProductNavigation/Page_JPetStore Demo/a_Add to Cart_1'))
+
+WebUI.click(findTestObject('Object Repository/ProductNavigation/Page_JPetStore Demo/a_Proceed to Checkout'))
+
+WebUI.click(findTestObject('Object Repository/ProductNavigation/Page_JPetStore Demo/img_1_2'))
+
+WebUI.click(findTestObject('Object Repository/ProductNavigation/Page_JPetStore Demo/a_AV-CB-01'))
+
+WebUI.click(findTestObject('Object Repository/ProductNavigation/Page_JPetStore Demo/a_EST-18'))
+
+WebUI.click(findTestObject('Object Repository/ProductNavigation/Page_JPetStore Demo/a_Add to Cart_1_2'))
+
+WebUI.click(findTestObject('Object Repository/ProductNavigation/Page_JPetStore Demo/a_Proceed to Checkout'))
+
+WebUI.closeBrowser()
+
+
+
+    /*
+      *  Automate the process of navigating a pet store website and adding items to the cart.
+      *
+      *  1. Open a web browser and navigate to the specified pet store URL.
+      *  2. Click on the "Enter the Store" link to access the main page.
+      *  3. Click on the "Sign In" link to log into the store.
+      *  4. Click on various product links to view details and add them to the cart.
+      *  5. Proceed to checkout after adding each product to the cart.
+      *  6. Close the web browser after completing the actions.
+      *
+      */
+
+// Open a web browser and navigate to the specified pet store URL
+WebUI.openBrowser('https://petstore.octoperf.com/')
+
+// Click on the "Enter the Store" link to access the main page
+WebUI.click(findTestObject('Object Repository/ProductNavigation/Page_JPetStore Demo/a_Enter the Store'))
+
+WebUI.click(findTestObject('Object Repository/ProductNavigation/Page_JPetStore Demo/a_Sign In'))
+
+WebUI.delay(4)
+// Close the web browser after completing the actions
+WebUI.closeBrowser()
 
 
 
 
+WebUI.openBrowser('')
 
+WebUI.navigateToUrl('https://petstore.octoperf.com/')
 
+WebUI.verifyElementPresent(findTestObject('Object Repository/LandingPage/Page_JPetStore Demo/a_Enter the Store'), 0)
+
+WebUI.verifyElementText(findTestObject('Object Repository/LandingPage/Page_JPetStore Demo/a_Enter the Store'), 'Enter the Store')
+
+WebUI.click(findTestObject('Object Repository/LandingPage/Page_JPetStore Demo/a_Enter the Store'))
+
+WebUI.closeBrowser()
 
 
 
